@@ -8,3 +8,5 @@ module Jekyll
     # Your code goes here...
   end
 end
+
+require "jekyll/commands/events.rb"
