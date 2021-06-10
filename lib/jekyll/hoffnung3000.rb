@@ -9,4 +9,4 @@ module Jekyll
   end
 end
 
-require "jekyll/commands/events.rb"
+require "jekyll/commands/hoffnung3000.rb"
