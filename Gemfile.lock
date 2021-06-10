@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-hoffnung3000 (0.1.1)
+    jekyll-hoffnung3000 (0.1.2)
       http (~> 4.4.1)
       json (~> 2.5.1)
       ruby-jq (~> 0.2.1)

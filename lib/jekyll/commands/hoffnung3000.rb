@@ -7,7 +7,8 @@ FORMAT_STRING =
     {
       title: .title,
       description: .description,
-      date: .date, time:
+      date: .slots[0].from | split(\"T\")[0],
+      time:
         {
           from: .slots[0].from,
           to: .slots[-1].to
