@@ -40,6 +40,42 @@ With this config set you can use the command line to fetch event data which will
 $ bundle exec jekyll hoffnung3000 events
 ```
 
+Events are formatted into the following way as array of JSON objects:
+
+```json
+[
+    {
+        "title": "Anti-Capitalist Knitting",
+        "description": "Anti-Capitalist Knitting is an experimental knitting workshop with an emphasis on sustainability, focusing on exploring materials and using simple techniques to create artwork........",
+        "date": "2020-06-06",
+        "time": {
+            "from": "2020-06-06T10:00:00.000Z",
+            "to": "2020-06-06T12:00:00.000Z"
+        },
+        "organiser": {
+            "name": "Name of Organiser",
+            "about": null
+        },
+        "venue": {
+            "id": null,
+            "name": "museum of neoliberalism [online location]",
+            "description": "A small, free museum about how an obscure and extreme ideological cult of the 1970s rose to power and now shapes our lives in dramatic and often terrible ways......",
+            "area": "London"
+        },
+        "imageUrl": "https://image-url/medium.jpg",
+        "tags": [
+            "Workshop",
+            "Art",
+            "Anticapitalism",
+            "Mental-health",
+            "Gender",
+            "Feminism"
+        ],
+        "websiteUrl": "https://event-website.org"
+    }
+]
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
