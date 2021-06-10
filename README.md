@@ -23,14 +23,16 @@ Or install it yourself as:
 
 Add these lines to your _config.yml replacing the url with the address of your running HOFFNUNG3000 instance.
 
-```
+```ruby
 hoffnung3000:
-    url: https://your-hoffnung3000-instance.org
+    url: "https://your-hoffnung3000-instance.org"
 ```
 
 With this config set you can use the command line to fetch event data which will be written to `_data/events.json`.
 
-`bundle exec jekyll hoffnung3000 events`
+```sh
+$ bundle exec jekyll hoffnung3000 events
+```
 
 ## Development
 
