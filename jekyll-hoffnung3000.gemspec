@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["git@contact.samandreae.com"]
 
   spec.summary       = "HOFFNUNG3000 archival tool"
-  spec.homepage      = "https://hoffnung3000.de"
+  spec.homepage      = "https://github.com/sandreae/jekyll-hoffnung3000"
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 2.4.0"
 
