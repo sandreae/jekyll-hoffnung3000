@@ -1,9 +1,6 @@
 # Jekyll::Hoffnung3000
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jekyll/hoffnung3000`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
+A Jekyll plugin for archiving HOFFNUNG3000 festivals.
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -22,7 +19,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Add these lines to your _config.yml replacing the url with the address of your running HOFFNUNG3000 instance.
+
+```
+hoffnung3000:
+    url: https://your-hoffnung3000-instance.org
+```
+
+With this config set you can use the command line to fetch event data which will be written to `_data/events.json`.
+
+`bundle exec jekyll hoffnung3000 events`
 
 ## Development
 
