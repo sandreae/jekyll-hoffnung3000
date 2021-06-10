@@ -46,6 +46,7 @@ end
 
 module Jekyll
   module Commands
+    # Commands for archiving a HOFFNUNG3000 festival in a Jekyll website
     class Hoffnung3000 < Command
       class << self
         def init_with_program(prog)
