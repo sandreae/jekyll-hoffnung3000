@@ -55,7 +55,7 @@ Events are formatted in the following way as array of JSON objects:
         "organiser": {
             "name": "Name of Organiser",
         },
-        "venue": {
+        "place": {
             "id": 1,
             "name": "museum of neoliberalism [online location]",
             "description": "A small, free museum about how an obscure and extreme ideological cult of the 1970s rose to power and now shapes our lives in dramatic and often terrible ways......",
