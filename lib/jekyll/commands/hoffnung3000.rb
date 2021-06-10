@@ -2,7 +2,7 @@ require "http"
 require "jq"
 require "json"
 
-FORMAT_STRING =
+FORMAT_STRING_EVENTS =
   ".data[] |
     {
       title: .title,
@@ -16,11 +16,10 @@ FORMAT_STRING =
       organiser:
         {
           name: .animal.userName,
-          about: .organiser_biog
         },
-      venue:
+      place:
         {
-          id: null,
+          id: .place.id,
           name: .place.title,
           description: .place.description,
           area: .place.city
@@ -28,6 +27,20 @@ FORMAT_STRING =
       imageUrl:.images[0].mediumImageUrl,
       tags:.tags,
       websiteUrl: .websiteUrl
+    }
+  ".freeze
+
+FORMAT_STRING_PLACES =
+  ".data[] |
+    {
+      id: .id,
+      title: .title,
+      description: .description,
+      street: .street,
+      cityCode: .cityCode,
+      city: .city,
+      country: .country,
+      imageUrl:.images[0].mediumImageUrl
     }
   ".freeze
 
@@ -60,7 +73,16 @@ module Jekyll
                 config = check_config(Jekyll.configuration({}))
                 response = HTTP.get(format("%s/api/events", config["hoffnung3000"]["url"]))
                 jq = JQ(response.body, parse_json: true)
-                write_data(jq.search(FORMAT_STRING), "events")
+                write_data(jq.search(FORMAT_STRING_EVENTS), "events")
+              end
+            end
+            c.command(:places) do |f|
+              f.description "Fetch all places and write to _data folder as places.json."
+              f.action do |_args, _options|
+                config = check_config(Jekyll.configuration({}))
+                response = HTTP.get(format("%s/api/places", config["hoffnung3000"]["url"]))
+                jq = JQ(response.body, parse_json: true)
+                write_data(jq.search(FORMAT_STRING_PLACES), "places")
               end
             end
           end

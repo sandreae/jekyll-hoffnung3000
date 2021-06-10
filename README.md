@@ -40,7 +40,7 @@ With this config set you can use the command line to fetch event data which will
 $ bundle exec jekyll hoffnung3000 events
 ```
 
-Events are formatted into the following way as array of JSON objects:
+Events are formatted in the following way as array of JSON objects:
 
 ```json
 [
@@ -54,10 +54,9 @@ Events are formatted into the following way as array of JSON objects:
         },
         "organiser": {
             "name": "Name of Organiser",
-            "about": null
         },
         "venue": {
-            "id": null,
+            "id": 1,
             "name": "museum of neoliberalism [online location]",
             "description": "A small, free museum about how an obscure and extreme ideological cult of the 1970s rose to power and now shapes our lives in dramatic and often terrible ways......",
             "area": "London"
@@ -72,6 +71,23 @@ Events are formatted into the following way as array of JSON objects:
             "Feminism"
         ],
         "websiteUrl": "https://event-website.org"
+    }
+]
+```
+
+Places are formatted in the following way as array of JSON objects:
+
+```json
+[
+    {
+        "id": 1,
+        "title": "Place name",
+        "description": "Description of this place",
+        "street": "1 Street",
+        "cityCode": "XXX123",
+        "city": "City",
+        "country": "Country",
+        "imageUrl": "https://image-url/medium.jpg"
     }
 ]
 ```
