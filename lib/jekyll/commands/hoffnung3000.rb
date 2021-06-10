@@ -35,19 +35,29 @@ def write_data(data, file_name)
   File.write(format("_data/%s.json", file_name), JSON.generate(data))
 end
 
+def check_config(config)
+  raise "HOFFNUNG3000 Error: Jekyl _config.yml file must contain a hoffnung3000 block" unless config["hoffnung3000"]
+  unless config["hoffnung3000"]["url"]
+    raise "HOFFNUNG3000 Error: Jekyl _config.yml file must contain a hoffnung3000 > url value"
+  end
+
+  config
+end
+
 module Jekyll
   module Commands
     class Hoffnung3000 < Command
       class << self
         def init_with_program(prog)
-          config = Jekyll.configuration({})["hoffnung3000"]
           prog.command(:hoffnung3000) do |c|
-            c.description "Archival tool for HOFNUNG3000 festivals."
-            c.syntax "hoffnung3000 <subcommand> [options]"
+            c.description "Archival tool for HOFFNUNG3000 festivals."
+            c.syntax "hoffnung3000 <subcommand>"
             c.command(:events) do |f|
+              f.description "Fetch all events and write to _data folder as events.json."
               f.action do |_args, _options|
-                response = HTTP.get(format("%s/api/events", config["url"])).body
-                jq = JQ(response, parse_json: true)
+                config = check_config(Jekyll.configuration({}))
+                response = HTTP.get(format("%s/api/events", config["hoffnung3000"]["url"]))
+                jq = JQ(response.body, parse_json: true)
                 write_data(jq.search(FORMAT_STRING), "events")
               end
             end
