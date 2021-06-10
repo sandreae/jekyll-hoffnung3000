@@ -1,6 +1,12 @@
 # Jekyll::Hoffnung3000
 
 A Jekyll plugin for archiving HOFFNUNG3000 festivals.
+
+## Prerequisites
+
+This gem uses `ruby-jq` gem to bind to [jq](http://stedolan.github.io/jq/) which requires the Oniguruma library to provide regex support.
+
+If any system dependencies are missing please see the [jq FAQ](https://github.com/stedolan/jq/wiki/FAQ#installation) for help.
 ## Installation
 
 Add this line to your application's Gemfile:
