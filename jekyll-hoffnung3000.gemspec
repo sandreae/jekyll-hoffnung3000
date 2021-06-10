@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   # spec.add_dependency "example-gem", "~> 1.0"
   spec.add_dependency "http", "~> 4.4.1"
   spec.add_dependency "ruby-jq", "~> 0.2.1"
-  spec.add_dependency "json"
+  spec.add_dependency "json", "~> 2.5.1"
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
