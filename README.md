@@ -6,7 +6,9 @@ A Jekyll plugin for archiving HOFFNUNG3000 festivals.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'jekyll-hoffnung3000'
+group :jekyll_plugins do
+    gem 'jekyll-hoffnung3000', '0.1.0'
+end
 ```
 
 And then execute:
