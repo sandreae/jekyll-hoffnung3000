@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "http"
 require "jq"
 require "json"
@@ -30,7 +32,7 @@ FORMAT_STRING_EVENTS =
         tags:.tags,
         websiteUrl: .websiteUrl
     }
-    ".freeze
+  "
 
 FORMAT_STRING_PLACES =
   ".data[] |
@@ -44,14 +46,16 @@ FORMAT_STRING_PLACES =
         country: .country,
         imageUrl:.images[0].mediumImageUrl
     }
-    ".freeze
+  "
 
-def init_jq(data)
-  JQ(data, parse_json: true)
-end
+SEARCH_STRINGS = {
+  "events" => FORMAT_STRING_EVENTS,
+  "places" => FORMAT_STRING_PLACES
+}.freeze
 
-def format_data(jq_instance, search_string)
-  jq_instance.search(search_string)
+def format_data(data, key)
+  jq = JQ(data, parse_json: true)
+  jq.search(SEARCH_STRINGS[key])
 end
 
 def write_data(data, file_name)
@@ -79,6 +83,6 @@ end
 def get_hoffnung(config, key, format_string)
   url = url(config)
   data = fetch_data(url, key)
-  formatted_data = format_data(init_jq(data), format_string)
+  formatted_data = format_data(data, format_string)
   write_data(formatted_data, key)
 end
