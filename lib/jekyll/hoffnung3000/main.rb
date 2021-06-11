@@ -80,9 +80,9 @@ def fetch_data(url, key)
   HTTP.get(format("%<url>s/api/%<key>s", { url: url, key: key }), { params: { limit: RESULT_LIMIT } }).body
 end
 
-def get_hoffnung(config, key, format_string)
+def get_hoffnung(config, key)
   url = url(config)
   data = fetch_data(url, key)
-  formatted_data = format_data(data, format_string)
+  formatted_data = format_data(data, key)
   write_data(formatted_data, key)
 end

@@ -14,13 +14,13 @@ module Jekyll
             c.command(:events) do |f|
               f.description "Fetch all events and write to _data folder as events.json."
               f.action do |_args, _options|
-                get_hoffnung(Jekyll.configuration({}), "events", FORMAT_STRING_EVENTS)
+                get_hoffnung(Jekyll.configuration({}), "events")
               end
             end
             c.command(:places) do |f|
               f.description "Fetch all places and write to _data folder as places.json."
               f.action do |_args, _options|
-                get_hoffnung(Jekyll.configuration({}), "places", FORMAT_STRING_PLACES)
+                get_hoffnung(Jekyll.configuration({}), "places")
               end
             end
           end
