@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "HOFFNUNG3000 archival tool"
   spec.homepage      = "https://github.com/sandreae/jekyll-hoffnung3000"
   spec.license       = "MIT"
-  spec.required_ruby_version = ">= 2.4.0"
+  spec.required_ruby_version = ">= 2.7.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
 
@@ -27,8 +27,11 @@ Gem::Specification.new do |spec|
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
   spec.add_dependency "http", "~> 4.4.1"
-  spec.add_dependency "ruby-jq", "~> 0.2.1"
+  spec.add_dependency "jekyll", "~> 4.2"
   spec.add_dependency "json", "~> 2.5.1"
+  spec.add_dependency "rake", "~> 13.0"
+  spec.add_dependency "rubocop", "~> 1.7"
+  spec.add_dependency "ruby-jq", "~> 0.2.1"
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html

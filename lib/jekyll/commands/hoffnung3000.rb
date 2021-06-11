@@ -1,62 +1,6 @@
-require "http"
-require "jq"
-require "json"
+# frozen_string_literal: true
 
-FORMAT_STRING_EVENTS =
-  ".data[] |
-    {
-      title: .title,
-      description: .description,
-      date: .slots[0].from | split(\"T\")[0],
-      time:
-        {
-          from: .slots[0].from,
-          to: .slots[-1].to
-        },
-      organiser:
-        {
-          name: .animal.userName,
-        },
-      place:
-        {
-          id: .place.id,
-          name: .place.title,
-          description: .place.description,
-          area: .place.city
-        },
-      imageUrl:.images[0].mediumImageUrl,
-      tags:.tags,
-      websiteUrl: .websiteUrl
-    }
-  ".freeze
-
-FORMAT_STRING_PLACES =
-  ".data[] |
-    {
-      id: .id,
-      title: .title,
-      description: .description,
-      street: .street,
-      cityCode: .cityCode,
-      city: .city,
-      country: .country,
-      imageUrl:.images[0].mediumImageUrl
-    }
-  ".freeze
-
-def write_data(data, file_name)
-  Dir.mkdir("_data") unless Dir.exist?("_data")
-  File.write(format("_data/%s.json", file_name), JSON.generate(data))
-end
-
-def check_config(config)
-  raise "HOFFNUNG3000 Error: Jekyl _config.yml file must contain a hoffnung3000 block" unless config["hoffnung3000"]
-  unless config["hoffnung3000"]["url"]
-    raise "HOFFNUNG3000 Error: Jekyl _config.yml file must contain a hoffnung3000 > url value"
-  end
-
-  config
-end
+require_relative "../hoffnung3000/main"
 
 module Jekyll
   module Commands
@@ -70,19 +14,13 @@ module Jekyll
             c.command(:events) do |f|
               f.description "Fetch all events and write to _data folder as events.json."
               f.action do |_args, _options|
-                config = check_config(Jekyll.configuration({}))
-                response = HTTP.get(format("%s/api/events", config["hoffnung3000"]["url"]))
-                jq = JQ(response.body, parse_json: true)
-                write_data(jq.search(FORMAT_STRING_EVENTS), "events")
+                get_hoffnung(Jekyll.configuration({}), "events", FORMAT_STRING_EVENTS)
               end
             end
             c.command(:places) do |f|
               f.description "Fetch all places and write to _data folder as places.json."
               f.action do |_args, _options|
-                config = check_config(Jekyll.configuration({}))
-                response = HTTP.get(format("%s/api/places", config["hoffnung3000"]["url"]))
-                jq = JQ(response.body, parse_json: true)
-                write_data(jq.search(FORMAT_STRING_PLACES), "places")
+                get_hoffnung(Jekyll.configuration({}), "places", FORMAT_STRING_PLACES)
               end
             end
           end
